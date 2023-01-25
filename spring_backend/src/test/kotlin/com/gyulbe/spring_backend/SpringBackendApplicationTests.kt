@@ -1,4 +1,4 @@
-package com.example.spring_backend
+package com.gyulbe.spring_backend
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

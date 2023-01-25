@@ -1,4 +1,4 @@
-package com.example.spring_backend
+package com.gyulbe.spring_backend
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
