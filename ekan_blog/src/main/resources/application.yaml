@@ -15,6 +15,7 @@ spring:
         format_sql: true
         show_sql: true
     database: h2
+    open-in-view: false
   h2:
     console:
       enabled: true

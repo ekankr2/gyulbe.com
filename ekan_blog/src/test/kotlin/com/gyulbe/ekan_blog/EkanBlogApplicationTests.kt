@@ -1,13 +1,13 @@
-package com.gyulbe.spring_backend
+package com.gyulbe.ekan_blog
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class SpringBackendApplicationTests {
+class EkanBlogApplicationTests {
 
-	@Test
-	fun contextLoads() {
-	}
+    @Test
+    fun contextLoads() {
+    }
 
 }
