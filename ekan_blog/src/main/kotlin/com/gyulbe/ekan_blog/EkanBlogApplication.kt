@@ -1,11 +1,11 @@
-package com.gyulbe.spring_backend
+package com.gyulbe.ekan_blog
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SpringBackendApplication
+class EkanBlogApplication
 
 fun main(args: Array<String>) {
-	runApplication<SpringBackendApplication>(*args)
+    runApplication<EkanBlogApplication>(*args)
 }
