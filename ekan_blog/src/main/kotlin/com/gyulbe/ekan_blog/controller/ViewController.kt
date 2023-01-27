@@ -7,5 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping
 class ViewController {
 
     @GetMapping("/")
-    fun index(): String = "index"
+    fun indexPage(): String = "index"
+
+    @GetMapping("/post/create")
+    fun createPostPage(): String = "/post/create"
 }

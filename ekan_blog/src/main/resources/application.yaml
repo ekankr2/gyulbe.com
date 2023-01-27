@@ -23,6 +23,8 @@ spring:
     console:
       enabled: true
       path: '/h2'
+  mustache:
+    suffix: .html
   devtools:
     livereload:
       enabled: true
