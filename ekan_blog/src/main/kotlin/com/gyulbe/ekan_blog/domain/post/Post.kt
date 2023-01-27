@@ -15,5 +15,5 @@ class Post(
 
     @Id
     @GeneratedValue
-    private val id: Long
+    private val id: Long? = null
 )
