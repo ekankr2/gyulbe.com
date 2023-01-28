@@ -1,11 +1,7 @@
 import React from 'react';
 
 const Footer = () => {
-    return (
-        <div>
-            푸터입니다.
-        </div>
-    );
+  return <footer className="bg-gray-100">푸터입니다.</footer>;
 };
 
 export default Footer;
