@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 const CreatePostPage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
+  const [subTitle, setSubtitle] = useState('');
   const [content, setContent] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const { data } = await createPost({ title, content });
+      const { data } = await createPost({ title: title, subTitle: subTitle, content: content });
       alert('성공하였습니다.');
       return navigate('/');
     } catch (error) {
@@ -33,8 +34,20 @@ const CreatePostPage = () => {
               className="m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding
                px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out
         focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-              id="title"
               placeholder="Enter Title"
+            />
+          </div>
+          <div className="form-group mb-6">
+            <label htmlFor="title" className="mb-2 inline-block text-gray-700">
+              SubTitle
+            </label>
+            <input
+              type="text"
+              onChange={(e) => setSubtitle(e.target.value)}
+              className="m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding
+               px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out
+        focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
+              placeholder="Enter SubTitle"
             />
           </div>
           <div className="form-group mb-6">
@@ -47,7 +60,6 @@ const CreatePostPage = () => {
               className="form-control m-0 block w-full rounded border border-solid border-gray-300 bg-white bg-clip-padding
         px-3 py-1.5 text-base font-normal text-gray-700 transition ease-in-out
         focus:border-blue-600 focus:bg-white focus:text-gray-700 focus:outline-none"
-              id="content"
               placeholder="Content here"
             ></textarea>
           </div>

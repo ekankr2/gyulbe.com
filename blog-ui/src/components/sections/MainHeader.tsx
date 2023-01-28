@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MainHeader = () => {
   return (
@@ -6,15 +7,15 @@ const MainHeader = () => {
       <div className="container mx-auto h-full">
         <div className="flex h-full items-center justify-between">
           <div className="cursor-pointer">
-            <h1 className="text-3xl font-bold">
-              <a href="/">블로그</a>
-            </h1>
+            <Link to="/">
+              <h1 className="text-3xl font-bold">블로그</h1>
+            </Link>
           </div>
           <div>
             <ul>
-              <li className="cursor-pointer rounded-lg px-3 py-2 hover:bg-gray-100">
-                <a href="/createPost">글쓰기</a>
-              </li>
+              <Link to="/createPost">
+                <li className="cursor-pointer rounded-lg px-3 py-2 hover:bg-gray-100">글쓰기</li>
+              </Link>
             </ul>
           </div>
         </div>
