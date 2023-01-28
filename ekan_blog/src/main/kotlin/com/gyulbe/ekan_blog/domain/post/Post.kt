@@ -14,10 +14,10 @@ class Post(
     private val id: Long? = null,
 
     @Column(nullable = false)
-    private val title: String,
+    val title: String,
 
     @Column(nullable = false, length = 200)
-    private val subTitle: String,
+    val subTitle: String,
 
     private val content: String,
 
