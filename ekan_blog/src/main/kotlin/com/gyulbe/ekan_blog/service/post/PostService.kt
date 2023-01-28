@@ -13,7 +13,7 @@ class PostService(
 
     @Transactional
     fun createPost(request: PostCreateRequest): Post {
-        val post = Post(request.title, request.content)
+        val post = Post(title = request.title, subTitle = request.subTitle, content = request.content)
         return postRepository.save(post)
     }
 }
