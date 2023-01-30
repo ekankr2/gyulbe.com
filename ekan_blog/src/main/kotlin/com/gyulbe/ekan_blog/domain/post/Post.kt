@@ -19,7 +19,8 @@ class Post(
     @Column(nullable = false, length = 200)
     val subTitle: String,
 
-    private val content: String,
+    @Column
+    val content: String,
 
     @CreatedDate
     private val createdAt: LocalDateTime = LocalDateTime.now(),
