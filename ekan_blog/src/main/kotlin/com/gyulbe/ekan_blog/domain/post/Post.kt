@@ -9,10 +9,6 @@ import java.time.LocalDateTime
 @Table(name = "blog_post")
 class Post(
 
-    @Id
-    @GeneratedValue
-    private val id: Long? = null,
-
     @Column(nullable = false)
     val title: String,
 
@@ -26,4 +22,8 @@ class Post(
     private val createdAt: LocalDateTime = LocalDateTime.now(),
     @LastModifiedDate
     private val updatedAt: LocalDateTime = LocalDateTime.now(),
+
+    @Id
+    @GeneratedValue
+    private val id: Long? = null,
 )
