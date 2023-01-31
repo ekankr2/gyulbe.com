@@ -10,12 +10,18 @@ const MainPage = () => {
         <div className="-my-8 divide-y-2 divide-gray-100">
           {postList &&
             postList.content.map((post, index) => (
-              <div key={index} className="flex cursor-pointer flex-wrap py-8 md:flex-nowrap">
-                <div className="mb-6 flex w-full flex-col overflow-hidden rounded-xl md:mr-[48px] md:mb-0 md:w-[240px] md:flex-shrink-0">
-                  <img className="h-[200px] md:h-[240px]" src="/sample-img.jpg" alt="main-image" />
+              <div key={index} className="group flex cursor-pointer flex-wrap py-8 md:flex-nowrap">
+                <div
+                  className="mb-6 flex w-full flex-col overflow-hidden rounded-xl transition-transform duration-300 ease-in-out
+                group-hover:-translate-y-2 md:mr-[48px] md:mb-0 md:h-[240px] md:w-[240px] md:flex-shrink-0"
+                >
+                  <img className="h-full w-full" src="/sample-img.jpg" alt="main-image" />
                 </div>
                 <div className="flex flex-col justify-center md:px-[20px]">
-                  <h2 className="title-font mb-2 text-4xl font-medium text-gray-900">
+                  <h2
+                    className="title-font mb-2 text-4xl font-[600] text-gray-900 transition-colors
+                  duration-300 ease-in-out group-hover:text-violet-700"
+                  >
                     Meditation bushwick direct trade taxidermy shaman
                   </h2>
                   <p className="leading-relaxed">
