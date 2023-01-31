@@ -1,16 +1,22 @@
 import React from 'react';
 import { useGetPostList } from '../../api/hooks/postHooks';
+import { Link, useNavigate } from 'react-router-dom';
 
 const MainPage = () => {
   const { data: postList } = useGetPostList({});
+  const navigate = useNavigate();
 
   return (
     <section className="body-font overflow-hidden text-gray-600">
       <article className="container mx-auto px-10 py-24">
         <div className="-my-8 divide-y-2 divide-gray-100">
           {postList &&
-            postList.content.map((post, index) => (
-              <div key={index} className="group flex cursor-pointer flex-wrap py-8 md:flex-nowrap">
+            postList.content.map((post) => (
+              <div
+                onClick={() => navigate(`/post/${post.id}`)}
+                key={post.id}
+                className="group flex cursor-pointer flex-wrap py-8 md:flex-nowrap"
+              >
                 <div
                   className="mb-6 flex w-full flex-col overflow-hidden rounded-xl transition-transform duration-300 ease-in-out
                 group-hover:-translate-y-2 md:mr-[48px] md:mb-0 md:h-[240px] md:w-[240px] md:flex-shrink-0"

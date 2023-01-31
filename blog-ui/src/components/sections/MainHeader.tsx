@@ -13,7 +13,7 @@ const MainHeader = () => {
           </div>
           <div>
             <ul>
-              <Link to="/createPost">
+              <Link to="/post/create">
                 <li className="cursor-pointer rounded-lg px-3 py-2 hover:bg-gray-100">글쓰기</li>
               </Link>
             </ul>

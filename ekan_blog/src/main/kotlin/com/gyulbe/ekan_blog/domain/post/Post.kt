@@ -19,11 +19,11 @@ class Post(
     val content: String,
 
     @CreatedDate
-    private val createdAt: LocalDateTime = LocalDateTime.now(),
+    val createdAt: LocalDateTime = LocalDateTime.now(),
     @LastModifiedDate
     private val updatedAt: LocalDateTime = LocalDateTime.now(),
 
     @Id
     @GeneratedValue
-    private val id: Long? = null,
+    val id: Long? = null,
 )
