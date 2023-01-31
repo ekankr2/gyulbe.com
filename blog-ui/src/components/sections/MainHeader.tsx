@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const MainHeader = () => {
   return (
-    <nav className="h-[60px] border-b-[1px] border-slate-200">
+    <nav className="sticky top-0 z-50 h-[60px] border-b-[1px] border-slate-200 bg-white">
       <div className="container mx-auto h-full">
         <div className="flex h-full items-center justify-between">
           <div className="cursor-pointer">
