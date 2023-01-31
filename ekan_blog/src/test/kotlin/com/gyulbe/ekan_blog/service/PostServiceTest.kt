@@ -54,13 +54,20 @@ class PostServiceTest @Autowired constructor(
         )
 
         // when
-        val pageable = PageRequest.of(0, 20, Sort.Direction.DESC, "id")
+        val pageable = PageRequest.of(0, 20)
+        val secondPageRequest = PageRequest.of(1, 2)
         val posts = postService.getPosts(pageable)
+        val secondPagePosts = postService.getPosts(secondPageRequest)
 
         // then
         assertThat(posts).hasSize(3)
         assertThat(posts).extracting("title").containsExactlyInAnyOrder("테스트", "테스트2", "테스트3")
         assertThat(posts).extracting("subTitle").containsExactlyInAnyOrder("부제목입니다", "부제목입니다2", "부제목입니다3")
         assertThat(posts).extracting("content").containsExactlyInAnyOrder("내용입니다", "내용입니다2", "내용입니다3")
+
+        assertThat(secondPagePosts).hasSize(1)
+        assertThat(secondPagePosts.content[0].title).isEqualTo("테스트3")
+        assertThat(secondPagePosts.content[0].subTitle).isEqualTo("부제목입니다3")
+        assertThat(secondPagePosts.content[0].content).isEqualTo("내용입니다3")
     }
 }
