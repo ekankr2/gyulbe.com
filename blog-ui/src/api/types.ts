@@ -3,3 +3,9 @@ export interface CreatePostRequest {
   subTitle: string;
   content: string;
 }
+
+export interface PageableRequest {
+  page?: number;
+  size?: number;
+  sort?: string[];
+}
