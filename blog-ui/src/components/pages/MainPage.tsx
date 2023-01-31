@@ -2,11 +2,35 @@ import React from 'react';
 import { useGetPostList } from '../../api/hooks/postHooks';
 
 const MainPage = () => {
-  const { data } = useGetPostList({});
+  const { data: postList } = useGetPostList({});
 
-  console.log(data);
-
-  return <div>메인페이지입니다.</div>;
+  return (
+    <section className="body-font overflow-hidden text-gray-600">
+      <article className="container mx-auto px-10 py-24">
+        <div className="-my-8 divide-y-2 divide-gray-100">
+          {postList &&
+            postList.content.map((post, index) => (
+              <div key={index} className="flex cursor-pointer flex-wrap py-8 md:flex-nowrap">
+                <div className="mb-6 flex w-full flex-col overflow-hidden rounded-xl md:mr-[48px] md:mb-0 md:w-[240px] md:flex-shrink-0">
+                  <img className="h-[200px] md:h-[240px]" src="/sample-img.jpg" alt="main-image" />
+                </div>
+                <div className="flex flex-col justify-center md:px-[20px]">
+                  <h2 className="title-font mb-2 text-4xl font-medium text-gray-900">
+                    Meditation bushwick direct trade taxidermy shaman
+                  </h2>
+                  <p className="leading-relaxed">
+                    Glossier echo park pug, church-key sartorial biodiesel vexillologist pop-up snackwave ramps
+                    cornhole. Marfa 3 wolf moon party messenger bag selfies, poke vaporware kombucha lumbersexual pork
+                    belly polaroid hoodie portland craft beer.
+                  </p>
+                  <span className="mt-1 text-sm text-gray-500">12 Jun 2019</span>
+                </div>
+              </div>
+            ))}
+        </div>
+      </article>
+    </section>
+  );
 };
 
 export default MainPage;
