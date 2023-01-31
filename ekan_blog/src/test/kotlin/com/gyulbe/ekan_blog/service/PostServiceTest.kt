@@ -70,4 +70,20 @@ class PostServiceTest @Autowired constructor(
         assertThat(secondPagePosts.content[0].subTitle).isEqualTo("부제목입니다3")
         assertThat(secondPagePosts.content[0].content).isEqualTo("내용입니다3")
     }
+
+//    @Test
+//    @DisplayName("포스트 정보 조회가 정상 동작한다")
+//    fun getPostTest() {
+//        // given
+//        val postId = 1L
+//        postRepository.save(Post("테스트", "부제목입니다", "내용입니다", id = postId))
+//
+//        // when
+//        val post = postService.getPostById(1)
+//
+//        // then
+//        assertThat(post).isNotNull
+//        assertThat(post).extracting("title").
+//
+//    }
 }

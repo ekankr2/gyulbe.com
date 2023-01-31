@@ -6,6 +6,7 @@ import com.gyulbe.ekan_blog.requests.post.PostCreateRequest
 import jakarta.transaction.Transactional
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 
 @Service
@@ -22,5 +23,10 @@ class PostService(
     @Transactional
     fun getPosts(pageable: Pageable): Page<Post> {
         return postRepository.findAll(pageable)
+    }
+
+    @Transactional
+    fun getPostById(postId: Long): Post? {
+        return postRepository.findByIdOrNull(postId)
     }
 }
