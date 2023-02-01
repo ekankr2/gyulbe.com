@@ -1,23 +1,29 @@
 import React, { useState } from 'react';
 import { createPost } from '../../../api/mainServices';
 import { useNavigate } from 'react-router-dom';
+import { useCreatePost } from '../../../api/hooks/postHooks';
 
 const CreatePostPage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [subTitle, setSubtitle] = useState('');
   const [content, setContent] = useState('');
+  const { mutate: createPost } = useCreatePost();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const { data } = await createPost({ title: title, subTitle: subTitle, content: content });
-      alert('성공하였습니다.');
-      return navigate('/');
-    } catch (error) {
-      console.error(error);
-      return alert('등록 실패');
-    }
+    createPost(
+      { title: title, subTitle: subTitle, content: content },
+      {
+        onSuccess: () => {
+          alert('성공하였습니다.');
+          return navigate('/');
+        },
+        onError: (error) => {
+          return alert('등록 실패');
+        },
+      },
+    );
   };
 
   return (

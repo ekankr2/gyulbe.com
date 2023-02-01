@@ -1,6 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import mainRequest from '../mainRequest';
-import { PageableRequest, PostInfo, PostListResponse } from '../types';
+import { CreatePostRequest, ErrorResponse, PageableRequest, PostInfo, PostListResponse } from '../types';
+import { AxiosError } from 'axios';
 
 export const PostKeys = {
   postList: 'postList',
@@ -22,5 +23,25 @@ export const useGetPostInfo = (id?: string) => {
       return data;
     },
     { enabled: !!id },
+  );
+};
+
+export const useCreatePost = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (data: CreatePostRequest) => {
+      const res = await mainRequest.post('/posts', data);
+      return res.data;
+    },
+    {
+      onSuccess: ({ data }) => {
+        console.log(data);
+        queryClient.invalidateQueries([PostKeys.postList]);
+      },
+      onError: (error: AxiosError<ErrorResponse>) => {
+        if (error.response) console.error(error.response.data);
+      },
+    },
   );
 };

@@ -37,3 +37,7 @@ export interface PostInfo {
   content: string;
   createdAt: any;
 }
+
+export interface ErrorResponse {
+  detail: string;
+}
