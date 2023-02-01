@@ -8,7 +8,7 @@ const MainPage = () => {
 
   return (
     <section className="body-font overflow-hidden text-gray-600">
-      <article className="container mx-auto px-10 py-24">
+      <article className="container mx-auto px-10 py-24 md:max-w-[1024px]">
         <div className="-my-8 divide-y-2 divide-gray-100">
           {postList &&
             postList.content.map((post) => (
@@ -18,8 +18,8 @@ const MainPage = () => {
                 className="group flex cursor-pointer flex-wrap py-8 md:flex-nowrap"
               >
                 <div
-                  className="mb-6 flex w-full flex-col overflow-hidden rounded-xl transition-transform duration-300 ease-in-out
-                group-hover:-translate-y-2 md:mr-[48px] md:mb-0 md:h-[240px] md:w-[240px] md:flex-shrink-0"
+                  className="mb-6 flex max-h-[200px] w-full flex-col overflow-hidden rounded-xl transition-transform duration-300
+                ease-in-out group-hover:-translate-y-2 md:mr-[48px] md:mb-0 md:h-[240px] md:max-h-[none] md:w-[240px] md:flex-shrink-0"
                 >
                   <img className="h-full w-full" src="/sample-img.jpg" alt="main-image" />
                 </div>
