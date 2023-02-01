@@ -27,11 +27,13 @@ export interface PageableResponse {
 }
 
 export interface PostListResponse extends PageableResponse {
-  content: {
-    id: string | number;
-    title: string;
-    subTitle: string;
-    content: string;
-    createdAt: any;
-  }[];
+  content: PostInfo[];
+}
+
+export interface PostInfo {
+  id: string | number;
+  title: string;
+  subTitle: string;
+  content: string;
+  createdAt: any;
 }
