@@ -1,0 +1,17 @@
+version: "3.7"
+services:
+  server:
+    image: "gyulbe/gyulbe-blog:latest"
+    build: .
+    container_name: gyulbe-blog
+    restart: always
+    volumes:
+      - appdata:/app
+    ports:
+      - "8080:8080"
+
+volumes:
+  appdata:
+    driver: local
+
+
