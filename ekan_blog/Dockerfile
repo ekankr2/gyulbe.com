@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-alpine
+FROM openjdk:17-jdk
 
 RUN apt-get update && apt-get -y install sudo
 
