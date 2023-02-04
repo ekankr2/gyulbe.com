@@ -1,6 +1,6 @@
-FROM openjdk:17-jdk
+FROM openjdk:17-alpine
 
-RUN apt-get update && apt-get -y install sudo
+RUN apk update
 
 ARG JAR_FILE=build/libs/ekan_blog-*.jar
 
