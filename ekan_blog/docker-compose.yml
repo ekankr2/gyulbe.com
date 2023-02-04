@@ -3,12 +3,31 @@ services:
   server:
     image: "gyulbe/gyulbe-blog:latest"
     build: .
-    container_name: gyulbe-blog
+    container_name: blog-server
     restart: always
     volumes:
       - appdata:/app
     ports:
       - "8080:8080"
+  nginx:
+    restart: always
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    container_name: blog-nginx
+    volumes:
+      - ./docker/nginx/logs:/var/log/nginx
+      - /home/ubuntu/blog/frontend:/usr/share/nginx/html
+    ports:
+      - "80:80"
+    depends_on:
+      - server
+    networks:
+      - app
+
+networks:
+  app:
+    driver: bridge
 
 volumes:
   appdata:
