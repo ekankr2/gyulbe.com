@@ -4,19 +4,22 @@ services:
     image: "gyulbe/gyulbe-blog:latest"
     build: .
     container_name: blog-server
-    restart: always
+    restart: unless-stopped
     volumes:
       - appdata:/app
+    networks:
+      - app
     ports:
       - "8080:8080"
   nginx:
-    restart: always
-    build:
-      context: ./docker/nginx
-      dockerfile: Dockerfile
+    image: "nginx:latest"
     container_name: blog-nginx
+    restart: unless-stopped
     volumes:
+      - ./docker/nginx/conf:/etc/nginx/conf.d
       - ./docker/nginx/logs:/var/log/nginx
+      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/www:/var/www/certbot
       - /home/ubuntu/gyulbe/blog/frontend:/usr/share/nginx/html
     ports:
       - "80:80"
@@ -25,17 +28,19 @@ services:
       - server
     networks:
       - app
+    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
   certbot:
-    image: "certbot/certbot:latest"
+    image: "certbot/certbot"
+    restart: unless-stopped
     container_name: blog-certbot
     volumes:
-      - ./docker/certbot/etc/letsencrypt
-      - ./docker/certbot/var:/var/lib/letsencrypt
-      - /home/ubuntu/gyulbe/blog/frontend:/var/www/html
-    command: certonly --webroot --webroot-path=/var/www/html --email ekankr2@naver.com --agree-tos --no-eff-email --force-renewal -d gyulbe.com -d www.gyulbe.com
+      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/www:/var/www/certbot
+    networks:
+      - app
     depends_on:
       - nginx
-
+    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
   app:
