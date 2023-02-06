@@ -20,10 +20,22 @@ services:
       - /home/ubuntu/gyulbe/blog/frontend:/usr/share/nginx/html
     ports:
       - "80:80"
+      - "443:443"
     depends_on:
       - server
     networks:
       - app
+  certbot:
+    image: "certbot/certbot:latest"
+    container_name: blog-certbot
+    volumes:
+      - ./docker/certbot/etc/letsencrypt
+      - ./docker/certbot/var:/var/lib/letsencrypt
+      - /home/ubuntu/gyulbe/blog/frontend:/var/www/html
+    command: certonly --webroot --webroot-path=/var/www/html --email ekankr2@naver.com --agree-tos --no-eff-email --force-renewal -d gyulbe.com -d www.gyulbe.com
+    depends_on:
+      - nginx
+
 
 networks:
   app:
