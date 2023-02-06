@@ -17,7 +17,7 @@ services:
     container_name: blog-nginx
     volumes:
       - ./docker/nginx/logs:/var/log/nginx
-      - /home/ubuntu/blog/frontend:/usr/share/nginx/html
+      - /home/ubuntu/gyulbe/blog/frontend:/usr/share/nginx/html
     ports:
       - "80:80"
     depends_on:
