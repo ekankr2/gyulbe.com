@@ -1,4 +1,4 @@
-package com.gyulbe.ekan_blog.responses
+package com.gyulbe.ekan_blog.domain.post
 
 class PostDeleteResponse(
     val postId: Long,

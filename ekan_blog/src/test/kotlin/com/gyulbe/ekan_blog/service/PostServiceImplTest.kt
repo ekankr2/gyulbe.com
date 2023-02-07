@@ -1,8 +1,8 @@
 package com.gyulbe.ekan_blog.service
 
 import com.gyulbe.ekan_blog.domain.post.Post
+import com.gyulbe.ekan_blog.domain.post.PostRequest
 import com.gyulbe.ekan_blog.repository.PostRepository
-import com.gyulbe.ekan_blog.requests.post.PostRequests
 import com.gyulbe.ekan_blog.service.post.PostServiceImpl
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.AfterEach
@@ -27,7 +27,7 @@ class PostServiceImplTest @Autowired constructor(
     @DisplayName("포스트 생성이 정상 동작한다.")
     fun createPostTest() {
         // given
-        val request = PostRequests("테스트 제목입니다.", "테스트 부제목입니다.", "테스트 내용입니다.")
+        val request = PostRequest("테스트 제목입니다.", "테스트 부제목입니다.", "테스트 내용입니다.")
 
         // when
         postServiceImpl.createPost(request)

@@ -10,13 +10,13 @@ import java.time.LocalDateTime
 class Post(
 
     @Column(nullable = false)
-    val title: String,
+    var title: String,
 
     @Column(nullable = false, length = 200)
-    val subTitle: String,
+    var subTitle: String,
 
     @Column
-    val content: String,
+    var content: String,
 
     @CreatedDate
     val createdAt: LocalDateTime = LocalDateTime.now(),

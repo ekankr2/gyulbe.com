@@ -6,5 +6,4 @@ import org.springframework.stereotype.Component
 
 @Component
 interface PostRepository : JpaRepository<Post, Long> {
-
 }
