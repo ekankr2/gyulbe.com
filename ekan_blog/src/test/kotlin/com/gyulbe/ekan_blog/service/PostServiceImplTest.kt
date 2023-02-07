@@ -3,7 +3,7 @@ package com.gyulbe.ekan_blog.service
 import com.gyulbe.ekan_blog.domain.post.Post
 import com.gyulbe.ekan_blog.repository.PostRepository
 import com.gyulbe.ekan_blog.requests.post.PostCreateRequest
-import com.gyulbe.ekan_blog.service.post.PostService
+import com.gyulbe.ekan_blog.service.post.PostServiceImpl
 import org.assertj.core.api.AssertionsForInterfaceTypes.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.DisplayName
@@ -11,12 +11,11 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.domain.PageRequest
-import org.springframework.data.domain.Sort
 
 @SpringBootTest
-class PostServiceTest @Autowired constructor(
+class PostServiceImplTest @Autowired constructor(
     private val postRepository: PostRepository,
-    private val postService: PostService
+    private val postServiceImpl: PostServiceImpl
 ) {
 
     @AfterEach
