@@ -30,7 +30,7 @@ class PostServiceImplTest @Autowired constructor(
         val request = PostCreateRequest("테스트 제목입니다.", "테스트 부제목입니다.", "테스트 내용입니다.")
 
         // when
-        postService.createPost(request)
+        postServiceImpl.createPost(request)
 
         // then
         val results = postRepository.findAll()
@@ -55,8 +55,8 @@ class PostServiceImplTest @Autowired constructor(
         // when
         val pageable = PageRequest.of(0, 20)
         val secondPageRequest = PageRequest.of(1, 2)
-        val posts = postService.getPosts(pageable)
-        val secondPagePosts = postService.getPosts(secondPageRequest)
+        val posts = postServiceImpl.getPosts(pageable)
+        val secondPagePosts = postServiceImpl.getPosts(secondPageRequest)
 
         // then
         assertThat(posts).hasSize(3)
