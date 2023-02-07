@@ -1,4 +1,4 @@
-package com.gyulbe.ekan_blog.requests.post
+package com.gyulbe.ekan_blog.requests
 
 data class PostCreateRequest(
     val title: String,

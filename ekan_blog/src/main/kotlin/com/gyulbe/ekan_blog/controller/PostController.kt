@@ -1,7 +1,7 @@
 package com.gyulbe.ekan_blog.controller
 
 import com.gyulbe.ekan_blog.domain.post.Post
-import com.gyulbe.ekan_blog.requests.post.PostCreateRequest
+import com.gyulbe.ekan_blog.requests.PostCreateRequest
 import com.gyulbe.ekan_blog.service.post.PostServiceImpl
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
@@ -28,5 +28,10 @@ class PostController(
     @GetMapping("/{id}")
     fun getPost(@PathVariable id: String): Post? {
         return postServiceImpl.getPostById(id.toLong())
+    }
+
+    @DeleteMapping("/{id}")
+    fun deletePost(@PathVariable id: String) {
+        return postServiceImpl.deletePost(id.toLong())
     }
 }
