@@ -1,20 +1,27 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDeletePost, useGetPostInfo } from '../../../api/hooks/postHooks';
+import { useDeletePost, useGetPostInfo, useUpdatePost } from '../../../api/hooks/postHooks';
 // @ts-ignore
 import { ReactComponent as VerticalDots } from '../../../assets/dots-vertical.svg';
 import { Group, Menu } from '@mantine/core';
 import { Pencil, Trash } from 'tabler-icons-react';
+import { usePostStore } from '../../../store/postStore';
 
 const PostDetailPage = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const { data: postInfo } = useGetPostInfo(id);
   const { mutate: deletePost } = useDeletePost();
+  const setSelectedPostId = usePostStore((state) => state.setSelectedPostId);
 
-  const handleEdit = () => {
-    console.log('dofd');
+  const handleUpdate = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (id) {
+      setSelectedPostId(+id);
+      return navigate('/post/update');
+    }
   };
+
   const handleDelete = (e: React.MouseEvent) => {
     e.preventDefault();
     if (id) {
@@ -47,7 +54,7 @@ const PostDetailPage = () => {
                   </Menu.Target>
 
                   <Menu.Dropdown>
-                    <Menu.Item onClick={handleEdit} icon={<Pencil size={14} />}>
+                    <Menu.Item onClick={handleUpdate} icon={<Pencil size={14} />}>
                       Edit Post
                     </Menu.Item>
                     <Menu.Item onClick={handleDelete} color="red" icon={<Trash size={14} />}>
