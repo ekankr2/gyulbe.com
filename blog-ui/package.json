@@ -9,12 +9,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@mantine/core": "^5.10.3",
+    "@mantine/hooks": "^5.10.3",
+    "@mantine/modals": "^5.10.3",
     "@tanstack/react-query": "^4.24.4",
     "axios": "^1.2.5",
     "precss": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.8.0",
+    "tabler-icons-react": "^1.56.0",
     "vite-plugin-svgr": "^2.4.0",
     "zustand": "^4.3.2"
   },
