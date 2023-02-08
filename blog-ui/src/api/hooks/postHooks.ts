@@ -36,7 +36,25 @@ export const useCreatePost = () => {
     },
     {
       onSuccess: ({ data }) => {
-        console.log(data);
+        queryClient.invalidateQueries([PostKeys.postList]);
+      },
+      onError: (error: AxiosError<ErrorResponse>) => {
+        if (error.response) console.error(error.response.data);
+      },
+    },
+  );
+};
+
+export const useDeletePost = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation(
+    async (id: string) => {
+      const res = await mainRequest.delete(`/posts/${id}`);
+      return res.data;
+    },
+    {
+      onSuccess: ({ data }) => {
         queryClient.invalidateQueries([PostKeys.postList]);
       },
       onError: (error: AxiosError<ErrorResponse>) => {
