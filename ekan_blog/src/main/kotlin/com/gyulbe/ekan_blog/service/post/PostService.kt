@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable
 interface PostService{
     fun createPost(request: PostRequest): Post
     fun getPosts(pageable: Pageable): Page<Post>
-    fun getPostById(postId: Long): Post?
+    fun getPostByIdOrNull(postId: Long): Post?
     fun deletePost(postId: Long)
     fun updatePost(request: PostRequest): Post
 
