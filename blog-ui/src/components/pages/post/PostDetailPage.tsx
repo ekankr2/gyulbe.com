@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useDeletePost, useGetPostInfo, useUpdatePost } from '../../../api/hooks/postHooks';
+import { useDeletePost, useGetPostInfo } from '../../../api/hooks/postHooks';
 // @ts-ignore
 import { ReactComponent as VerticalDots } from '../../../assets/dots-vertical.svg';
 import { Group, Menu } from '@mantine/core';

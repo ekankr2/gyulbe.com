@@ -57,14 +57,13 @@ export const useUpdatePost = () => {
 
   return useMutation(
     async (request: UpdatePostRequest) => {
-      const res = await mainRequest.put('/posts/', request);
+      const res = await mainRequest.put('/posts', request);
       return res.data;
     },
     {
       onSuccess: ({ data }) => {
         console.log(data);
         queryClient.invalidateQueries([PostKeys.postList]);
-        queryClient.invalidateQueries([PostKeys.postInfo, data.id]);
       },
     },
   );
