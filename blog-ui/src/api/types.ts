@@ -4,6 +4,10 @@ export interface CreatePostRequest {
   content: string;
 }
 
+export interface UpdatePostRequest extends CreatePostRequest {
+  id: number;
+}
+
 // pageable types
 
 export interface PageableRequest {

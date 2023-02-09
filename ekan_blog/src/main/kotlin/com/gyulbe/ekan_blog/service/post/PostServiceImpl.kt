@@ -23,7 +23,7 @@ class PostServiceImpl(
     override fun getPosts(pageable: Pageable): Page<Post> = postRepository.findAll(pageable)
 
     @Transactional
-    override fun getPostById(postId: Long): Post? = postRepository.findByIdOrNull(postId)
+    override fun getPostByIdOrNull(postId: Long): Post? = postRepository.findByIdOrNull(postId)
 
     @Transactional
     override fun deletePost(postId: Long) {

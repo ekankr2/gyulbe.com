@@ -3,7 +3,7 @@ import { createPost } from '../../../api/mainServices';
 import { useNavigate } from 'react-router-dom';
 import { useCreatePost } from '../../../api/hooks/postHooks';
 
-const CreatePostPage = () => {
+const PostCreatePage = () => {
   const navigate = useNavigate();
   const [title, setTitle] = useState('');
   const [subTitle, setSubtitle] = useState('');
@@ -85,4 +85,4 @@ const CreatePostPage = () => {
   );
 };
 
-export default CreatePostPage;
+export default PostCreatePage;
