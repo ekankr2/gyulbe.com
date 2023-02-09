@@ -31,8 +31,9 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
-    - name: Build with Gradle
+    - name: Setup Gradle
       if: steps.filter.outputs.backend == 'true'
       uses: gradle/gradle-build-action@v2.3.3
-      with:
-        arguments: build
+
+    - name: Execute Gradle build   
+      run: ./gradlew build
