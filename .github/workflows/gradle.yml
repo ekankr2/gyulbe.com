@@ -1,0 +1,38 @@
+name: CI / CD
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build_jar:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ekan_blog
+
+    steps:
+    - name: Check out Git repository
+    - uses: actions/checkout@v3
+    
+    - uses: dorny/paths-filter@v2
+      id: filter
+      with:
+        filters: |
+          backend:
+            - 'ekan_blog/**'
+          frontend:
+            - 'frontend/**'
+    
+    - name: Set up JDK 17
+      if: steps.filter.outputs.backend == 'true'
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Build with Gradle
+      if: steps.filter.outputs.backend == 'true'
+      uses: gradle/gradle-build-action@v2.3.3
+      with:
+        arguments: build
