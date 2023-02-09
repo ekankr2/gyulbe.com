@@ -37,4 +37,6 @@ jobs:
 
     - name: Execute Gradle build
       if: steps.filter.outputs.backend == 'true'
-      run: ./gradlew build
+      run: |
+        chmod +x ./gradlew
+        ./gradlew build
