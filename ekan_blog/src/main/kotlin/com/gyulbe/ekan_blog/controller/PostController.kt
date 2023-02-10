@@ -24,7 +24,7 @@ class PostController(
     }
 
     @GetMapping("")
-    fun getAllPosts(@PageableDefault(page = 0, size = 20, sort = ["id"]) pageable: Pageable): Page<Post> {
+    fun getAllPosts(@PageableDefault(page = 0, size = 9999, sort = ["id"]) pageable: Pageable): Page<Post> {
         return postServiceImpl.getPosts(pageable)
     }
 
