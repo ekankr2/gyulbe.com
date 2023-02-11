@@ -19,7 +19,7 @@ class PostController(
 ) {
 
     @PostMapping("")
-    fun createPost(@RequestBody request: PostRequest): Post {
+    fun createPost(@RequestBody request: PostRequest): Post? {
         return postServiceImpl.createPost(request)
     }
 
