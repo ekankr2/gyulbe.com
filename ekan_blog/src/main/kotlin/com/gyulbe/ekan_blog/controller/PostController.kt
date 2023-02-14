@@ -1,5 +1,6 @@
 package com.gyulbe.ekan_blog.controller
 
+import com.gyulbe.ekan_blog.annotation.CheckLastSubmitTime
 import com.gyulbe.ekan_blog.domain.post.Post
 import com.gyulbe.ekan_blog.domain.post.PostRequest
 import com.gyulbe.ekan_blog.service.post.PostServiceImpl
@@ -22,6 +23,10 @@ class PostController(
     fun createPost(@RequestBody request: PostRequest): Post? {
         return postServiceImpl.createPost(request)
     }
+
+    @GetMapping("/test")
+    @CheckLastSubmitTime
+    fun testSubmitSecurity(): String = "nothing"
 
     @GetMapping("")
     fun getAllPosts(@PageableDefault(page = 0, size = 9999, sort = ["id"]) pageable: Pageable): Page<Post> {

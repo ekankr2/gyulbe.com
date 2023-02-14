@@ -8,15 +8,16 @@ import org.springframework.stereotype.Component
 @Aspect
 @Component
 class CheckLastSubmitTimeAspect {
-    @Around("@annotation(CheckLastSubmitTime)")
+
     @Throws(Throwable::class)
+    @Around("@annotation(com.gyulbe.ekan_blog.annotation.CheckLastSubmitTime)")
     fun checkLastSubmitTime(joinPoint: ProceedingJoinPoint): Any? {
         val start = System.currentTimeMillis()
 
         println("before start")
         val proceed = joinPoint.proceed()
         val executionTime = System.currentTimeMillis() - start
-        println(executionTime)
+        println("after start")
         return proceed
     }
 }

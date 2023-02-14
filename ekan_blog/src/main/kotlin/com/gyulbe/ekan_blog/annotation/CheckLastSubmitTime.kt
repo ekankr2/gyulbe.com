@@ -1,4 +1,4 @@
-package com.gyulbe.ekan_blog.aspect
+package com.gyulbe.ekan_blog.annotation
 
 @Target(AnnotationTarget.FUNCTION)
 @Retention(AnnotationRetention.RUNTIME)
