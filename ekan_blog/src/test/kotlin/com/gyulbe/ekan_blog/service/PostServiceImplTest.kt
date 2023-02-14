@@ -1,5 +1,6 @@
 package com.gyulbe.ekan_blog.service
 
+import com.gyulbe.ekan_blog.aspect.CheckLastSubmitTime
 import com.gyulbe.ekan_blog.domain.post.Post
 import com.gyulbe.ekan_blog.domain.post.PostRequest
 import com.gyulbe.ekan_blog.repository.PostRepository

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 class CheckLastSubmitTimeAspect {
     @Around("@annotation(CheckLastSubmitTime)")
     @Throws(Throwable::class)
-    fun logExecutionTime(joinPoint: ProceedingJoinPoint): Any? {
+    fun checkLastSubmitTime(joinPoint: ProceedingJoinPoint): Any? {
         val start = System.currentTimeMillis()
 
         println("before start")
