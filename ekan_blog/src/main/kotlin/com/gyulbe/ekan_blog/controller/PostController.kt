@@ -26,7 +26,10 @@ class PostController(
 
     @GetMapping("/test")
     @CheckLastSubmitTime
-    fun testSubmitSecurity(): String = "nothing"
+    fun testSubmitSecurity(): String {
+        println("api")
+        return "nothing"
+    }
 
     @GetMapping("")
     fun getAllPosts(@PageableDefault(page = 0, size = 9999, sort = ["id"]) pageable: Pageable): Page<Post> {
