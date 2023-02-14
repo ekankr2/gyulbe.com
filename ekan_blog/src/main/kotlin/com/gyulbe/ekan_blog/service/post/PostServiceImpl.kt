@@ -1,6 +1,5 @@
 package com.gyulbe.ekan_blog.service.post
 
-import com.google.common.util.concurrent.RateLimiter
 import com.gyulbe.ekan_blog.domain.post.Post
 import com.gyulbe.ekan_blog.domain.post.PostRequest
 import com.gyulbe.ekan_blog.repository.PostRepository
@@ -19,12 +18,7 @@ class PostServiceImpl(
 
     @Transactional
     override fun createPost(request: PostRequest): Post? {
-        val rateLimiter = RateLimiter.create(0.2)
-        val startTime = ZonedDateTime.now().second
-        if(rateLimiter.tryAcquire()) {
-            return postRepository.save(request.toEntity())
-        }
-        return null
+        return postRepository.save(request.toEntity())
     }
 
 
