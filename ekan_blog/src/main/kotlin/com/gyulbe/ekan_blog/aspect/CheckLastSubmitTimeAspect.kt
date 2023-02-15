@@ -4,6 +4,9 @@ import org.aspectj.lang.ProceedingJoinPoint
 import org.aspectj.lang.annotation.Around
 import org.aspectj.lang.annotation.Aspect
 import org.springframework.stereotype.Component
+import org.springframework.web.context.request.RequestContextHolder
+import org.springframework.web.context.request.ServletRequestAttributes
+
 
 @Aspect
 @Component
@@ -12,11 +15,13 @@ class CheckLastSubmitTimeAspect {
     @Throws(Throwable::class)
     @Around("@annotation(com.gyulbe.ekan_blog.annotation.CheckLastSubmitTime)")
     fun checkLastSubmitTime(joinPoint: ProceedingJoinPoint): Any? {
-        val start = System.currentTimeMillis()
+        val request = (RequestContextHolder.currentRequestAttributes() as ServletRequestAttributes).request
+        val url = request.requestURL
+        val method = request.method
 
-        println("before start")
+        println(url)
+        println(method)
         val proceed = joinPoint.proceed()
-        val executionTime = System.currentTimeMillis() - start
         println("after start")
         return proceed
     }
