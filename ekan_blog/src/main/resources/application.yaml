@@ -11,6 +11,17 @@ spring:
       hibernate:
         format_sql: true
         show_sql: true
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: d3e47fc2ddd966fa4352
+            clientSecret: 3bc0f6b8332f93076354c2a5bada2f5a05aea60d
+            redirectUri: "{baseUrl}/oauth2/callback/{registrationId}"
+            scope:
+              - user:email
+              - read:user
   h2:
     console:
       enabled: true
