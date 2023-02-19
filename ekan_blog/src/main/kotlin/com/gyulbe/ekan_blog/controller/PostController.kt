@@ -1,6 +1,6 @@
 package com.gyulbe.ekan_blog.controller
 
-import com.gyulbe.ekan_blog.annotation.CheckLastSubmitTime
+import com.gyulbe.ekan_blog.annotation.CheckRecentSubmitTime
 import com.gyulbe.ekan_blog.domain.post.Post
 import com.gyulbe.ekan_blog.domain.post.PostRequest
 import com.gyulbe.ekan_blog.service.post.PostServiceImpl
@@ -25,7 +25,7 @@ class PostController(
     }
 
     @GetMapping("/test")
-    @CheckLastSubmitTime
+    @CheckRecentSubmitTime
     fun testSubmitSecurity(): String {
         println("running api")
         return "nothing"

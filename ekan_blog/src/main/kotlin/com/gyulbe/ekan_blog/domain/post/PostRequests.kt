@@ -12,3 +12,8 @@ data class PostRequest(
         content = content
     )
 }
+
+data class RequestAttributes(
+    val requestUrl: String,
+    val method: String
+)
