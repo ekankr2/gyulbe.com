@@ -11,20 +11,22 @@ class RecentRequestHandler {
     fun handleRecentRequestInfo(requestContext: HttpServletRequest): Map<String, Any>? {
         val clientIp = requestContext.remoteAddr
         val lastRequestedAt = recentRequests[clientIp]?.get("lastRequestedAt") as? LocalTime
+        val countFromLastRequest = recentRequests[clientIp]?.get("count") as? Int
         var count = 0
 
         if (lastRequestedAt != null && isBeforeLastRequestedTime(lastRequestedAt, 5)) {
-            count = recentRequests[clientIp]?.get("count") as Int + 1
+            count = countFromLastRequest!! + 1
         }
 
         val requestOptions = mapOf<String, Any>(
-            "lastRequestedAt" to LocalTime.now(),
+            "lastRequestedAt" to calculateInputTimeFromCount(countFromLastRequest, 5),
             "requestUrl" to requestContext.requestURL,
             "method" to requestContext.method,
             "count" to count
         )
 
         recentRequests[clientIp] = requestOptions
+        println(recentRequests[clientIp])
         return recentRequests[clientIp]
     }
 
@@ -32,4 +34,12 @@ class RecentRequestHandler {
         val comparedTime = LocalTime.now().minusSeconds(comparedSeconds)
         return comparedTime.isBefore(lastRequestedAt)
     }
+
+    private fun calculateInputTimeFromCount(countFromLastRequest: Int?, limitedCount: Int): LocalTime {
+        if (countFromLastRequest != null && countFromLastRequest > limitedCount) {
+            return LocalTime.now().plusMinutes(30)
+        }
+        return LocalTime.now()
+    }
+
 }

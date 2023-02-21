@@ -20,7 +20,6 @@ class CheckRecentSubmitTimeAspect(
     fun checkLastSubmitTime(joinPoint: ProceedingJoinPoint): Any? {
         val requestContext = (RequestContextHolder.currentRequestAttributes() as ServletRequestAttributes).request
         val count = recentRequestHandler.handleRecentRequestInfo(requestContext)?.get("count") as Int
-
         val proceed = joinPoint.proceed()
         if(count < 5) return proceed
 

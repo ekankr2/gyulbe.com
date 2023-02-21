@@ -27,7 +27,6 @@ class PostController(
     @GetMapping("/test")
     @CheckRecentSubmitTime
     fun testSubmitSecurity(): String {
-        println("running api")
         return "nothing"
     }
 
