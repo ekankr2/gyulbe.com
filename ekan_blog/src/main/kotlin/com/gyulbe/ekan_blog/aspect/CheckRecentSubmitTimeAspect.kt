@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Aspect
 import org.springframework.stereotype.Component
 import org.springframework.web.context.request.RequestContextHolder
 import org.springframework.web.context.request.ServletRequestAttributes
+import kotlin.reflect.typeOf
 
 
 @Aspect
@@ -16,12 +17,13 @@ class CheckRecentSubmitTimeAspect(
 ) {
     @Throws(Throwable::class)
     @Around("@annotation(com.gyulbe.ekan_blog.annotation.CheckRecentSubmitTime)")
-    fun checkLastSubmitTime(joinPoint: ProceedingJoinPoint): Any {
+    fun checkLastSubmitTime(joinPoint: ProceedingJoinPoint): Any? {
         val requestContext = (RequestContextHolder.currentRequestAttributes() as ServletRequestAttributes).request
-        println(recentRequestHandler.handleRecentRequestInfo(requestContext))
+        val count = recentRequestHandler.handleRecentRequestInfo(requestContext)?.get("count") as Int
 
         val proceed = joinPoint.proceed()
-        println("after api call")
-        return
+        if(count < 5) return proceed
+
+        return "too many requests"
     }
 }
