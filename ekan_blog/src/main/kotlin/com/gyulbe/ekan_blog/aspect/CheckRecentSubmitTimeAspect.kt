@@ -16,12 +16,12 @@ class CheckRecentSubmitTimeAspect(
 ) {
     @Throws(Throwable::class)
     @Around("@annotation(com.gyulbe.ekan_blog.annotation.CheckRecentSubmitTime)")
-    fun checkLastSubmitTime(joinPoint: ProceedingJoinPoint): Any? {
+    fun checkLastSubmitTime(joinPoint: ProceedingJoinPoint): Any {
         val requestContext = (RequestContextHolder.currentRequestAttributes() as ServletRequestAttributes).request
-        recentRequestHandler.handleRecentRequestInfo(requestContext)
+        println(recentRequestHandler.handleRecentRequestInfo(requestContext))
 
         val proceed = joinPoint.proceed()
         println("after api call")
-        return proceed
+        return
     }
 }

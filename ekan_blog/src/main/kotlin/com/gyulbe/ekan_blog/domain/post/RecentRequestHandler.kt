@@ -13,7 +13,7 @@ class RecentRequestHandler {
         val lastRequestedAt = recentRequests[clientIp]?.get("lastRequestedAt") as? LocalTime
         var count = 0
 
-        if (lastRequestedAt != null && isAfterLastRequestedAt(lastRequestedAt, 5)) {
+        if (lastRequestedAt != null && isBeforeLastRequestedTime(lastRequestedAt, 5)) {
             count = recentRequests[clientIp]?.get("count") as Int + 1
         }
 
@@ -25,12 +25,11 @@ class RecentRequestHandler {
         )
 
         recentRequests[clientIp] = requestOptions
-        println(recentRequests[clientIp])
         return recentRequests[clientIp]
     }
 
-    fun isAfterLastRequestedAt(lastRequestedAt: LocalTime, comparedSeconds: Long): Boolean {
+    fun isBeforeLastRequestedTime(lastRequestedAt: LocalTime, comparedSeconds: Long): Boolean {
         val comparedTime = LocalTime.now().minusSeconds(comparedSeconds)
-        return lastRequestedAt.isAfter(comparedTime)
+        return comparedTime.isBefore(lastRequestedAt)
     }
 }
