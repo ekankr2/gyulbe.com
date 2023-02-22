@@ -10,7 +10,7 @@ const MainPage = () => {
     <section className="body-font overflow-hidden text-gray-600">
       <article className="container mx-auto px-10 py-24 md:max-w-[1024px]">
         <div className="-my-8 divide-y-2 divide-gray-100">
-          {postList &&
+          {postList?.content &&
             postList.content.map((post) => (
               <div
                 onClick={() => navigate(`/post/${post.id}`)}
