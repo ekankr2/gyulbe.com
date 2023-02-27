@@ -15,7 +15,7 @@ services:
 networks:
   app:
     name: blog_network
-    external: true
+    driver: bridge
 
 volumes:
   appdata:
