@@ -11,40 +11,11 @@ services:
       - app
     ports:
       - "8080:8080"
-  nginx:
-    image: "nginx:latest"
-    container_name: blog-nginx
-    restart: unless-stopped
-    volumes:
-      - ./docker/nginx/conf:/etc/nginx/conf.d
-      - ./docker/nginx/logs:/var/log/nginx
-      - ./docker/certbot/conf:/etc/letsencrypt
-      - ./docker/certbot/www:/var/www/certbot
-      - /home/ubuntu/gyulbe/blog/frontend:/usr/share/nginx/html
-    ports:
-      - "80:80"
-      - "443:443"
-    depends_on:
-      - server
-    networks:
-      - app
-    command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
-  certbot:
-    image: "certbot/certbot"
-    restart: unless-stopped
-    container_name: blog-certbot
-    volumes:
-      - ./docker/certbot/conf:/etc/letsencrypt
-      - ./docker/certbot/www:/var/www/certbot
-    networks:
-      - app
-    depends_on:
-      - nginx
-    entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
 
 networks:
   app:
-    driver: bridge
+    name: blog_network
+    external: true
 
 volumes:
   appdata:
